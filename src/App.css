@@ -1,0 +1,108 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app {
+  width: 100%;
+}
+
+.app-header {
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  color: #646cff;
+  margin-bottom: 0.5rem;
+}
+
+.app-header p {
+  color: #888;
+  font-size: 1.2rem;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.card {
+  padding: 2em;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  max-width: 600px;
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #4caf50;
+}
+
+.card button {
+  margin: 1rem 0;
+}
+
+.card .info {
+  margin-top: 1rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.card code {
+  background-color: #333;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+}
+
+.features {
+  background-color: #1a1a1a;
+  padding: 2em;
+  border-radius: 8px;
+  max-width: 600px;
+}
+
+.features h3 {
+  margin-top: 0;
+  color: #646cff;
+}
+
+.features ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.features li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.features li:before {
+  content: "🎴";
+  position: absolute;
+  left: 0;
+}
+
+.app-footer {
+  margin-top: 3rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+@media (prefers-color-scheme: light) {
+  .card,
+  .features {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+  }
+
+  .card code {
+    background-color: #e0e0e0;
+  }
+}
