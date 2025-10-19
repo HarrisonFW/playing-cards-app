@@ -3,8 +3,8 @@
 ## 📋 Task Tracker
 
 **Last Updated**: 2025-10-19
-**Current Phase**: Phase 0 - Setup & Foundation
-**Overall Progress**: 30% (52/150+ tasks completed)
+**Current Phase**: Phase 1 - Core Card System
+**Overall Progress**: 39% (68/150+ tasks completed)
 
 ---
 
@@ -145,22 +145,22 @@
 
 #### Card & Deck Models [HIGH]
 
-- 🔴 Create Card interface
-  - 🔴 Define Card type (rank, suit, id, faceUp, position, owner)
-  - 🔴 Create card utility functions
-  - 🔴 Create card factory function
-  - 🔴 Add TypeScript types file
-- 🔴 Create Deck class
-  - 🔴 Implement deck initialization (52 cards)
-  - 🔴 Implement Fisher-Yates shuffle
-  - 🔴 Implement draw card method
-  - 🔴 Implement reset method
-  - 🔴 Add deck utilities
-- 🔴 Test card/deck logic
-  - 🔴 Unit tests for Card utilities
-  - 🔴 Unit tests for Deck class
-  - 🔴 Test shuffle randomness
-  - 🔴 Test edge cases
+- 🟢 Create Card interface (Completed: 2025-10-19)
+  - 🟢 Define Card type (rank, suit, id, faceUp, position, owner) (Completed: 2025-10-19)
+  - 🟢 Create card utility functions (Completed: 2025-10-19)
+  - 🟢 Create card factory function (Completed: 2025-10-19)
+  - 🟢 Add TypeScript types file (Completed: 2025-10-19)
+- 🟢 Create Deck class (Completed: 2025-10-19)
+  - 🟢 Implement deck initialization (52 cards) (Completed: 2025-10-19)
+  - 🟢 Implement Fisher-Yates shuffle (Completed: 2025-10-19)
+  - 🟢 Implement draw card method (Completed: 2025-10-19)
+  - 🟢 Implement reset method (Completed: 2025-10-19)
+  - 🟢 Add deck utilities (Completed: 2025-10-19)
+- 🟢 Test card/deck logic (Completed: 2025-10-19)
+  - 🟢 Unit tests for Card utilities (Completed: 2025-10-19)
+  - 🟢 Unit tests for Deck class (Completed: 2025-10-19)
+  - 🟢 Test shuffle randomness (Completed: 2025-10-19)
+  - 🟢 Test edge cases (Completed: 2025-10-19)
 
 #### Card Asset Creation [HIGH]
 
