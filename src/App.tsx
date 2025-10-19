@@ -14,9 +14,7 @@ function App() {
       <main className="app-main">
         <div className="card">
           <h2>Project Initialized!</h2>
-          <p>
-            Vite + React + TypeScript project is ready.
-          </p>
+          <p>Vite + React + TypeScript project is ready.</p>
           <button onClick={() => setCount((count) => count + 1)}>
             count is {count}
           </button>

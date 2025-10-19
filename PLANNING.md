@@ -1,6 +1,7 @@
 # PLANNING.md - Digital Playing Cards Application
 
 ## 📋 Document Overview
+
 This document contains the technical planning, architecture decisions, and development roadmap for the Digital Playing Cards Application. This should be read at the start of every new development session.
 
 **Last Updated**: 2025-10-19  
@@ -12,9 +13,11 @@ This document contains the technical planning, architecture decisions, and devel
 ## 🎯 Vision & Goals
 
 ### Project Vision
+
 Create an intuitive, flexible digital playing cards platform that combines the freedom of physical card manipulation with the convenience and rule enforcement of digital gaming.
 
 ### Core Principles
+
 1. **Flexibility First**: Any card game should be playable through the freeform mode
 2. **Intuitive Interaction**: Drag-and-drop should feel natural and responsive
 3. **Visual Clarity**: Cards and game state must always be clear and readable
@@ -22,6 +25,7 @@ Create an intuitive, flexible digital playing cards platform that combines the f
 5. **Extensibility**: Easy to add new games and features
 
 ### Success Metrics
+
 - Users can play a complete game of Snap or Blackjack within 2 minutes of first use
 - Card drag operations maintain 60fps
 - Zero critical bugs in game rule enforcement
@@ -125,7 +129,9 @@ src/
 ### Recommended Stack
 
 #### **Frontend Framework: React 18+ with TypeScript**
+
 **Why React + TypeScript:**
+
 - **Component-based**: Perfect for card/game component architecture
 - **Virtual DOM**: Efficient updates for card movements
 - **Large ecosystem**: Rich library support (drag-and-drop, animations)
@@ -134,12 +140,15 @@ src/
 - **Developer tools**: Excellent debugging experience
 
 **Alternatives Considered:**
+
 - ❌ Vue.js: Good, but smaller ecosystem for game development
 - ❌ Vanilla JavaScript: Too much boilerplate for complex state
 - ❌ Svelte: Less mature ecosystem, fewer libraries
 
 #### **Graphics Rendering: HTML5 Canvas API**
+
 **Why Canvas:**
+
 - **Performance**: Hardware-accelerated rendering for 52+ cards
 - **Flexibility**: Full control over card drawing and animations
 - **Standard**: Native browser support, no dependencies
@@ -147,17 +156,21 @@ src/
 - **Image handling**: Easy sprite/texture management
 
 **Implementation:**
+
 - Use Canvas for card rendering
 - React components as wrapper/controllers
 - Konva.js library for advanced canvas management
 
 **Alternatives Considered:**
+
 - ❌ SVG: Good for scalability, but slower with many elements
 - ❌ WebGL: Overkill for 2D cards, steep learning curve
 - ❌ CSS-only: Limited animation control, performance issues
 
 #### **State Management: Redux Toolkit**
+
 **Why Redux Toolkit:**
+
 - **Predictable state**: Single source of truth for game state
 - **Time-travel debugging**: Useful for testing game logic
 - **Middleware**: Easy to add game rule validation
@@ -165,36 +178,46 @@ src/
 - **TypeScript support**: Full type inference
 
 #### **Drag-and-Drop: React DnD + Custom Canvas Handling**
+
 **Why React DnD + Custom:**
+
 - **React DnD**: Handle DOM-based drop zones and logic
 - **Custom Canvas**: Handle card dragging on canvas for performance
 - **Touch support**: Both mouse and touch events
 
 #### **Animation: GSAP (GreenSock)**
+
 **Why GSAP:**
+
 - **Performance**: Industry-leading animation performance
 - **Flexibility**: Complex animation sequences
 - **Ease functions**: Professional motion curves
 - **Timeline control**: Coordinate multiple card animations
 
 #### **Build Tool: Vite**
+
 **Why Vite:**
+
 - **Fast**: Lightning-fast HMR and builds
 - **Modern**: Native ESM support
 - **TypeScript**: First-class TypeScript support
 - **Optimized**: Automatic code splitting and optimization
 
 #### **Testing: Vitest + React Testing Library**
+
 **Why Vitest:**
+
 - **Fast**: Blazing fast test execution
 - **Vite integration**: Same config as build tool
 - **Jest compatible**: Familiar API
 
 **React Testing Library:**
+
 - **User-centric**: Test user interactions, not implementation
 - **Best practices**: Encourages accessible components
 
 #### **Code Quality: ESLint + Prettier**
+
 **Standard tools for consistent code quality**
 
 ---
@@ -204,6 +227,7 @@ src/
 ### Version Control: Git + GitHub
 
 #### Repository Structure
+
 ```
 playing-cards-app/
 ├── .github/
@@ -238,6 +262,7 @@ playing-cards-app/
 #### Git Workflow (GitHub Flow)
 
 **Branch Strategy:**
+
 ```
 main (production-ready)
   ├── develop (integration branch)
@@ -249,6 +274,7 @@ main (production-ready)
 ```
 
 **Commit Convention (Conventional Commits):**
+
 ```
 feat: add card flip animation
 fix: resolve touch drag on mobile
@@ -260,6 +286,7 @@ chore: update dependencies
 ```
 
 **Pull Request Process:**
+
 1. Create feature branch from `develop`
 2. Make changes and commit with conventional commits
 3. Push branch and create PR to `develop`
@@ -271,6 +298,7 @@ chore: update dependencies
 #### GitHub Actions CI/CD
 
 **Continuous Integration (.github/workflows/ci.yml):**
+
 ```yaml
 name: CI
 
@@ -291,6 +319,7 @@ jobs:
 ```
 
 **Continuous Deployment (.github/workflows/cd.yml):**
+
 ```yaml
 name: CD
 
@@ -310,6 +339,7 @@ jobs:
 ### Docker Configuration
 
 #### Development Environment (Dockerfile.dev)
+
 ```dockerfile
 FROM node:20-alpine
 
@@ -330,6 +360,7 @@ CMD ["npm", "run", "dev", "--", "--host"]
 ```
 
 #### Production Environment (Dockerfile.prod)
+
 ```dockerfile
 # Build stage
 FROM node:20-alpine AS builder
@@ -356,6 +387,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ```
 
 #### Docker Compose (docker-compose.yml)
+
 ```yaml
 version: '3.8'
 
@@ -366,7 +398,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile.dev
     ports:
-      - "5173:5173"
+      - '5173:5173'
     volumes:
       - .:/app
       - /app/node_modules
@@ -380,7 +412,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile.prod
     ports:
-      - "8080:80"
+      - '8080:80'
     environment:
       - NODE_ENV=production
 
@@ -398,6 +430,7 @@ services:
 #### Docker Commands Reference
 
 **Development:**
+
 ```bash
 # Start development environment
 docker-compose up dev
@@ -416,6 +449,7 @@ docker-compose down
 ```
 
 **Production:**
+
 ```bash
 # Build production image
 docker build -f docker/Dockerfile.prod -t playing-cards-app:latest .
@@ -430,6 +464,7 @@ docker-compose up prod
 ### Development Workflow Integration
 
 #### Daily Development Flow:
+
 ```bash
 # 1. Start development environment
 docker-compose up dev
@@ -457,6 +492,7 @@ git push origin feature/new-feature
 #### When to Use Docker vs Local:
 
 **Use Docker When:**
+
 - ✅ Setting up project first time (consistent environment)
 - ✅ Running tests (isolated environment)
 - ✅ Deploying to production
@@ -464,11 +500,13 @@ git push origin feature/new-feature
 - ✅ CI/CD pipelines
 
 **Use Local When:**
+
 - ✅ Quick edits and iterations (faster HMR)
 - ✅ Debugging with browser DevTools
 - ✅ Learning/experimenting (simpler setup)
 
 **Hybrid Approach (Recommended):**
+
 - Develop locally for speed: `npm run dev`
 - Test in Docker before committing: `docker-compose run test`
 - Production deployment always uses Docker
@@ -478,6 +516,7 @@ git push origin feature/new-feature
 ## 📦 Dependencies
 
 ### Core Dependencies
+
 ```json
 {
   "dependencies": {
@@ -514,38 +553,41 @@ git push origin feature/new-feature
 ### State Management Pattern
 
 **Redux Slices Structure:**
+
 ```typescript
 // deckSlice.ts
 interface DeckState {
-  cards: Card[];
-  drawPile: string[];  // Card IDs
-  discardPile: string[];
-  shuffled: boolean;
+  cards: Card[]
+  drawPile: string[] // Card IDs
+  discardPile: string[]
+  shuffled: boolean
 }
 
 // gameSlice.ts
 interface GameState {
-  mode: 'snap' | 'blackjack' | 'freeform';
-  currentPlayer: 1 | 2;
-  player1: PlayerState;
-  player2: PlayerState;
-  winner: number | null;
+  mode: 'snap' | 'blackjack' | 'freeform'
+  currentPlayer: 1 | 2
+  player1: PlayerState
+  player2: PlayerState
+  winner: number | null
 }
 ```
 
 **Action Naming:**
+
 - Use past tense: `cardMoved`, `deckShuffled`, `gameStarted`
 - Namespace by slice: `deck/shuffled`, `game/playerChanged`
 
 ### Component Pattern
 
 **Container/Presentational Pattern:**
+
 ```typescript
 // Container (Smart Component)
 function SnapGameContainer() {
   const gameState = useSelector(selectSnapGame);
   const dispatch = useDispatch();
-  
+
   return <SnapGame state={gameState} onAction={dispatch} />;
 }
 
@@ -562,29 +604,30 @@ function SnapGame({ state, onAction }: SnapGameProps) {
 ### Card Rendering Strategy
 
 **Canvas Rendering Pattern:**
+
 ```typescript
 class CardRenderer {
-  private canvas: HTMLCanvasElement;
-  private ctx: CanvasRenderingContext2D;
-  private cardImages: Map<string, HTMLImageElement>;
-  
+  private canvas: HTMLCanvasElement
+  private ctx: CanvasRenderingContext2D
+  private cardImages: Map<string, HTMLImageElement>
+
   // Render all visible cards in one pass
   renderCards(cards: CardState[]) {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    cards.forEach(card => {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+
+    cards.forEach((card) => {
       if (card.faceUp) {
-        this.drawCardFace(card);
+        this.drawCardFace(card)
       } else {
-        this.drawCardBack(card);
+        this.drawCardBack(card)
       }
-    });
+    })
   }
-  
+
   // Use sprite sheet for performance
   private drawCardFace(card: CardState) {
-    const sprite = this.cardImages.get(`${card.rank}_${card.suit}`);
-    this.ctx.drawImage(sprite, card.x, card.y, card.width, card.height);
+    const sprite = this.cardImages.get(`${card.rank}_${card.suit}`)
+    this.ctx.drawImage(sprite, card.x, card.y, card.width, card.height)
   }
 }
 ```
@@ -592,12 +635,13 @@ class CardRenderer {
 ### Game Engine Pattern
 
 **Base Game Engine:**
+
 ```typescript
 abstract class BaseGameEngine {
-  abstract validateMove(move: Move): boolean;
-  abstract executeMove(move: Move): GameState;
-  abstract checkWinCondition(): Player | null;
-  
+  abstract validateMove(move: Move): boolean
+  abstract executeMove(move: Move): GameState
+  abstract checkWinCondition(): Player | null
+
   // Shared functionality
   protected dealCards(count: number, player: Player): void {
     // Common dealing logic
@@ -608,9 +652,9 @@ class SnapEngine extends BaseGameEngine {
   validateMove(move: Move): boolean {
     // Snap-specific validation
   }
-  
+
   checkSnapMatch(card1: Card, card2: Card): boolean {
-    return card1.rank === card2.rank;
+    return card1.rank === card2.rank
   }
 }
 ```
@@ -618,27 +662,29 @@ class SnapEngine extends BaseGameEngine {
 ### Performance Optimization Patterns
 
 **Memoization:**
+
 ```typescript
 // Memoize expensive calculations
 const selectPlayerHand = createSelector(
   [selectCards, selectPlayerId],
-  (cards, playerId) => cards.filter(c => c.owner === playerId)
-);
+  (cards, playerId) => cards.filter((c) => c.owner === playerId),
+)
 
 // Memoize components
 const Card = React.memo(CardComponent, (prev, next) => {
-  return prev.id === next.id && prev.position === next.position;
-});
+  return prev.id === next.id && prev.position === next.position
+})
 ```
 
 **Virtual Scrolling (if needed for many cards):**
+
 ```typescript
 // Only render cards in viewport
 const VisibleCards = ({ cards, viewport }: Props) => {
   const visibleCards = useMemo(() => {
     return cards.filter(card => isInViewport(card, viewport));
   }, [cards, viewport]);
-  
+
   return <>{visibleCards.map(card => <Card key={card.id} {...card} />)}</>;
 };
 ```
@@ -648,11 +694,12 @@ const VisibleCards = ({ cards, viewport }: Props) => {
 ## 🧪 Testing Strategy
 
 ### Testing Pyramid
+
 ```
       /\
      /  \    E2E Tests (Few)
     /____\   - Full game flows
-   /      \  
+   /      \
   /________\ Integration Tests (Some)
  /          \ - Component interactions
 /____________\ Unit Tests (Many)
@@ -664,17 +711,20 @@ const VisibleCards = ({ cards, viewport }: Props) => {
 ### Test Categories
 
 **Unit Tests (Vitest):**
+
 - Game engines (Snap, Blackjack logic)
 - Card utilities (shuffle, deal, etc.)
 - Redux reducers and selectors
 - Helper functions
 
 **Integration Tests (React Testing Library):**
+
 - Component interactions
 - Drag-and-drop workflows
 - Game flow sequences
 
 **E2E Tests (Playwright - Future):**
+
 - Complete game sessions
 - Multi-player interactions
 - Cross-browser testing
@@ -682,27 +732,29 @@ const VisibleCards = ({ cards, viewport }: Props) => {
 ### Test Examples
 
 **Game Logic Test:**
+
 ```typescript
 describe('SnapEngine', () => {
   it('should detect matching ranks', () => {
-    const engine = new SnapEngine();
-    const card1 = { rank: 'King', suit: 'Hearts' };
-    const card2 = { rank: 'King', suit: 'Spades' };
-    
-    expect(engine.checkSnapMatch(card1, card2)).toBe(true);
-  });
-});
+    const engine = new SnapEngine()
+    const card1 = { rank: 'King', suit: 'Hearts' }
+    const card2 = { rank: 'King', suit: 'Spades' }
+
+    expect(engine.checkSnapMatch(card1, card2)).toBe(true)
+  })
+})
 ```
 
 **Component Test:**
+
 ```typescript
 describe('Card Component', () => {
   it('should flip when double-clicked', async () => {
     const { getByTestId } = render(<Card id="1" faceUp={false} />);
     const card = getByTestId('card-1');
-    
+
     await userEvent.dblClick(card);
-    
+
     expect(card).toHaveAttribute('data-face-up', 'true');
   });
 });
@@ -713,6 +765,7 @@ describe('Card Component', () => {
 ## 📊 Performance Targets
 
 ### Metrics & Goals
+
 - **FPS during drag**: 60fps (16.67ms per frame)
 - **Initial load time**: < 2 seconds
 - **Card render time**: < 10ms for 52 cards
@@ -721,6 +774,7 @@ describe('Card Component', () => {
 - **Memory usage**: < 50MB for full game session
 
 ### Monitoring Tools
+
 - Chrome DevTools Performance tab
 - React DevTools Profiler
 - Bundle analyzer (webpack-bundle-analyzer)
@@ -731,12 +785,14 @@ describe('Card Component', () => {
 ## 🔒 Security Considerations
 
 ### Client-Side Security
+
 - **No sensitive data**: All game state is client-side only
 - **Input validation**: Validate all user moves and inputs
 - **XSS prevention**: React's built-in XSS protection
 - **Dependency scanning**: Regular `npm audit` checks
 
 ### Future Considerations (Online Play)
+
 - **Authentication**: OAuth 2.0 for user accounts
 - **Authorization**: JWT tokens for API access
 - **Rate limiting**: Prevent API abuse
@@ -749,6 +805,7 @@ describe('Card Component', () => {
 ### Hosting Options (Recommended: Static Hosting)
 
 **Option 1: Vercel (Recommended)**
+
 - ✅ Zero configuration
 - ✅ Automatic HTTPS
 - ✅ Global CDN
@@ -756,16 +813,19 @@ describe('Card Component', () => {
 - ✅ Preview deployments for PRs
 
 **Option 2: Netlify**
+
 - ✅ Similar to Vercel
 - ✅ Great for static sites
 - ✅ Form handling (if needed)
 
 **Option 3: GitHub Pages**
+
 - ✅ Free for public repos
 - ✅ Simple setup
 - ❌ Limited build features
 
 **Option 4: Self-Hosted (Docker)**
+
 - ✅ Full control
 - ✅ Use docker/Dockerfile.prod
 - ❌ More maintenance
@@ -773,6 +833,7 @@ describe('Card Component', () => {
 ### Deployment Pipeline
 
 **Production Deployment:**
+
 ```
 1. Merge PR to main branch
 2. GitHub Actions CI runs
@@ -786,6 +847,7 @@ describe('Card Component', () => {
 ```
 
 ### Environment Variables
+
 ```env
 # .env.development
 VITE_APP_ENV=development
@@ -803,15 +865,18 @@ VITE_API_URL=https://api.playingcards.com
 ### Documentation Types
 
 **Code Documentation:**
+
 - TSDoc comments for complex functions
 - README in each major directory
 - Inline comments for non-obvious logic
 
 **API Documentation (Future):**
+
 - OpenAPI/Swagger for REST APIs
 - GraphQL schema documentation
 
 **User Documentation:**
+
 - In-app tutorials
 - Help section with game rules
 - Keyboard shortcuts reference
@@ -821,6 +886,7 @@ VITE_API_URL=https://api.playingcards.com
 ## 🎯 Development Phases & Milestones
 
 ### Phase 0: Setup & Foundation (Week 1)
+
 **Goal**: Development environment ready
 
 - [x] Create project structure
@@ -838,9 +904,11 @@ VITE_API_URL=https://api.playingcards.com
 ---
 
 ### Phase 1: Core Card System (Weeks 2-3)
+
 **Goal**: Working deck and card interactions
 
 **Week 2: Card Model & Rendering**
+
 - [ ] Implement Card model (TypeScript interfaces)
 - [ ] Implement Deck model with shuffle algorithm
 - [ ] Set up Canvas rendering system
@@ -851,6 +919,7 @@ VITE_API_URL=https://api.playingcards.com
 - [ ] Unit tests for card/deck logic
 
 **Week 3: Drag & Drop System**
+
 - [ ] Implement drag-and-drop system
   - [ ] Mouse event handlers
   - [ ] Touch event handlers
@@ -867,6 +936,7 @@ VITE_API_URL=https://api.playingcards.com
 ---
 
 ### Phase 2: Freeform Play Mode (Week 4)
+
 **Goal**: Users can play any card game manually
 
 - [ ] Create PlayArea component with zones
@@ -885,9 +955,11 @@ VITE_API_URL=https://api.playingcards.com
 ---
 
 ### Phase 3: Snap Game (Week 5)
+
 **Goal**: Fully functional Snap game with AI
 
 **Game Logic:**
+
 - [ ] Create SnapEngine class
 - [ ] Implement card dealing logic
 - [ ] Implement turn-based play
@@ -898,6 +970,7 @@ VITE_API_URL=https://api.playingcards.com
 - [ ] Unit tests for all game rules
 
 **UI Implementation:**
+
 - [ ] Create SnapGame component
 - [ ] Display player deck counts
 - [ ] Show central play pile
@@ -907,6 +980,7 @@ VITE_API_URL=https://api.playingcards.com
 - [ ] Add game restart functionality
 
 **Polish:**
+
 - [ ] Sound effects (card flip, snap, win)
 - [ ] Animations (card dealing, pile collection)
 - [ ] Visual feedback for Snap attempts
@@ -917,9 +991,11 @@ VITE_API_URL=https://api.playingcards.com
 ---
 
 ### Phase 4: Blackjack Game (Weeks 6-7)
+
 **Goal**: Fully functional Blackjack game
 
 **Week 6: Game Logic**
+
 - [ ] Create BlackjackEngine class
 - [ ] Implement card value calculation
   - [ ] Number cards (face value)
@@ -935,6 +1011,7 @@ VITE_API_URL=https://api.playingcards.com
 - [ ] Unit tests for all rules and edge cases
 
 **Week 7: UI & Polish**
+
 - [ ] Create BlackjackGame component
 - [ ] Display player hand with value
 - [ ] Display dealer hand (1 hidden card)
@@ -953,9 +1030,11 @@ VITE_API_URL=https://api.playingcards.com
 ---
 
 ### Phase 5: Polish & Optimization (Week 8)
+
 **Goal**: Production-ready application
 
 **Performance:**
+
 - [ ] Profile rendering performance
 - [ ] Optimize card rendering (sprite batching)
 - [ ] Implement lazy loading for assets
@@ -964,6 +1043,7 @@ VITE_API_URL=https://api.playingcards.com
 - [ ] Achieve 60fps target
 
 **UX/UI:**
+
 - [ ] Responsive design testing (desktop, tablet)
 - [ ] Accessibility audit (WCAG 2.1 AA)
 - [ ] Keyboard navigation
@@ -974,6 +1054,7 @@ VITE_API_URL=https://api.playingcards.com
 - [ ] Help/tutorial modal
 
 **Quality Assurance:**
+
 - [ ] Cross-browser testing
 - [ ] Device testing (touch devices)
 - [ ] Bug bash and fixes
@@ -982,6 +1063,7 @@ VITE_API_URL=https://api.playingcards.com
 - [ ] Security audit
 
 **Documentation:**
+
 - [ ] Update README with setup instructions
 - [ ] Add contributing guidelines
 - [ ] Create user guide
@@ -989,6 +1071,7 @@ VITE_API_URL=https://api.playingcards.com
 - [ ] API documentation (if applicable)
 
 **Deployment:**
+
 - [ ] Production build configuration
 - [ ] Environment variable setup
 - [ ] Deploy to production (Vercel/Netlify)
@@ -1002,6 +1085,7 @@ VITE_API_URL=https://api.playingcards.com
 ### Phase 6: Future Enhancements (Post v1.0)
 
 **Planned for v1.1+**
+
 - [ ] Additional card games (Poker, Hearts, Solitaire)
 - [ ] Online multiplayer (WebSocket)
 - [ ] User accounts and profiles
@@ -1019,30 +1103,35 @@ VITE_API_URL=https://api.playingcards.com
 ### Architecture Decisions
 
 **ADR-001: React + TypeScript**
+
 - **Date**: 2025-10-19
 - **Decision**: Use React 18+ with TypeScript
 - **Rationale**: Component-based architecture fits card game UI, TypeScript provides type safety for complex game state
 - **Alternatives**: Vue.js (smaller ecosystem), Vanilla JS (too much boilerplate)
 
 **ADR-002: Canvas Rendering**
+
 - **Date**: 2025-10-19
 - **Decision**: Use HTML5 Canvas for card rendering
 - **Rationale**: Performance for many cards, smooth animations, hardware acceleration
 - **Alternatives**: SVG (slower with many elements), pure CSS (limited control)
 
 **ADR-003: Redux for State Management**
+
 - **Date**: 2025-10-19
 - **Decision**: Use Redux Toolkit for global state
 - **Rationale**: Predictable state for game logic, time-travel debugging, middleware for validation
 - **Alternatives**: Context API (harder to debug), Zustand (less tooling)
 
 **ADR-004: Docker for Development**
+
 - **Date**: 2025-10-19
 - **Decision**: Use Docker for consistent development environment
 - **Rationale**: Team consistency, matches production, easier onboarding
 - **Trade-offs**: Slight performance overhead, learning curve for Docker newcomers
 
 **ADR-005: GitHub Flow for Branching**
+
 - **Date**: 2025-10-19
 - **Decision**: Use GitHub Flow (main + develop + feature branches)
 - **Rationale**: Simple, works well with CI/CD, good for small teams
@@ -1053,16 +1142,19 @@ VITE_API_URL=https://api.playingcards.com
 ## 🐛 Known Issues & Technical Debt
 
 ### Current Known Issues
-*None yet - project in planning phase*
+
+_None yet - project in planning phase_
 
 ### Technical Debt Tracker
-*Track technical debt here as it's discovered*
+
+_Track technical debt here as it's discovered_
 
 ---
 
 ## 📚 Resources & References
 
 ### Learning Resources
+
 - **React**: https://react.dev
 - **TypeScript**: https://www.typescriptlang.org/docs
 - **Redux Toolkit**: https://redux-toolkit.js.org
@@ -1071,11 +1163,13 @@ VITE_API_URL=https://api.playingcards.com
 - **GitHub Actions**: https://docs.github.com/en/actions
 
 ### Design Inspiration
+
 - **Playing card designs**: Research standard card designs
 - **Game UIs**: Look at poker sites, card game apps
 - **Animation references**: GSAP examples, Framer Motion
 
 ### Similar Projects
+
 - Study existing digital card games for UX patterns
 - Analyze open-source card game implementations
 
@@ -1084,6 +1178,7 @@ VITE_API_URL=https://api.playingcards.com
 ## 🤝 Team & Communication
 
 ### Roles (For Future Team)
+
 - **Lead Developer**: Architecture and code review
 - **Frontend Developer**: UI components and styling
 - **Game Logic Developer**: Game engines and rules
@@ -1091,6 +1186,7 @@ VITE_API_URL=https://api.playingcards.com
 - **Designer**: UI/UX and card designs
 
 ### Communication Channels
+
 - **GitHub Issues**: Bug tracking and feature requests
 - **GitHub Discussions**: Design decisions and architecture
 - **Pull Requests**: Code review and feedback
@@ -1103,6 +1199,7 @@ VITE_API_URL=https://api.playingcards.com
 ### Essential Commands
 
 **Development:**
+
 ```bash
 # Start local development
 npm run dev
@@ -1122,6 +1219,7 @@ npm run format
 ```
 
 **Git:**
+
 ```bash
 # Create feature branch
 git checkout -b feature/feature-name
@@ -1134,6 +1232,7 @@ git push origin feature/feature-name
 ```
 
 **Docker:**
+
 ```bash
 # Build and start
 docker-compose up --build dev
@@ -1151,6 +1250,7 @@ docker-compose up --build
 ## 🎯 Next Steps
 
 ### Immediate Actions:
+
 1. **Set up Git repository** on GitHub
 2. **Initialize project** with Vite + React + TypeScript
 3. **Configure Docker** development environment
@@ -1159,6 +1259,7 @@ docker-compose up --build
 6. **Start Phase 1**: Implement Card and Deck models
 
 ### Before Next Session:
+
 - [ ] Read this PLANNING.md thoroughly
 - [ ] Review TASKS.md for current status
 - [ ] Check Playing_Cards_PRD.md for requirements
@@ -1174,8 +1275,9 @@ docker-compose up --build
 **Maintained By**: Development Team
 
 **Change Log:**
+
 - 2025-10-19: Initial PLANNING.md created with full architecture, tech stack, Docker/GitHub setup
 
 ---
 
-*This document should be read at the start of every development session. Keep it updated as the project evolves.*
+_This document should be read at the start of every development session. Keep it updated as the project evolves._

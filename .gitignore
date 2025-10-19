@@ -67,3 +67,7 @@ Desktop.ini
 *.swp
 *.swo
 *~
+
+# Local files
+claudeCode_api.txt
+Claude Code Installation Guide.txt

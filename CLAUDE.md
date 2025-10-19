@@ -1,6 +1,7 @@
 # CLAUDE.md - Project Assistant Guidelines
 
 ## Purpose
+
 This document guides Claude in assisting with the Digital Playing Cards Application project. Following these guidelines ensures consistency, quality, and efficient progress across multiple work sessions.
 
 ---
@@ -31,12 +32,14 @@ This document guides Claude in assisting with the Digital Playing Cards Applicat
 ## 📋 Task Management Rules
 
 ### Before Starting Work:
+
 - [ ] Read PLANNING.md completely
 - [ ] Review TASKS.md for current priorities
 - [ ] Confirm which task you're working on
 - [ ] Check for any dependencies or prerequisites
 
 ### During Work:
+
 - **Mark tasks as completed IMMEDIATELY** when finished
 - Update task status in TASKS.md using the format:
   ```markdown
@@ -46,6 +49,7 @@ This document guides Claude in assisting with the Digital Playing Cards Applicat
 - Document any important decisions or changes in PLANNING.md
 
 ### Adding New Tasks:
+
 When you discover or are asked to add new tasks:
 
 1. **Assess Priority**: Determine if it's High, Medium, or Low priority
@@ -59,6 +63,7 @@ When you discover or are asked to add new tasks:
 4. **Inform the User**: Let them know the task has been added and where
 
 ### Task Status Indicators:
+
 - 🔴 - Not started
 - 🟡 - In progress (use when task is partially complete)
 - 🟢 - Completed (always add completion date in parentheses)
@@ -70,6 +75,7 @@ When you discover or are asked to add new tasks:
 ## 📁 Project File Structure
 
 ### Core Documentation Files:
+
 ```
 project-root/
 ├── CLAUDE.md           # This file - guidelines for Claude
@@ -80,6 +86,7 @@ project-root/
 ```
 
 ### Source Code Structure (typical):
+
 ```
 src/
 ├── components/        # React components
@@ -94,13 +101,16 @@ src/
 ## 🎯 Project-Specific Guidelines
 
 ### Understanding the Project:
+
 This is a **Digital Playing Cards Application** with:
+
 - **Primary Goal**: Flexible card manipulation interface for any card game
 - **Built-in Games**: Snap and Blackjack (2-player)
 - **Core Feature**: Drag-and-drop card interaction
 - **Technical Approach**: Web-based, responsive, local multiplayer
 
 ### Key Technical Decisions (refer to PLANNING.md for details):
+
 - Technology stack (React/Vue, Canvas/SVG, etc.)
 - Card rendering approach
 - State management strategy
@@ -108,6 +118,7 @@ This is a **Digital Playing Cards Application** with:
 - Game rule implementation patterns
 
 ### Code Quality Standards:
+
 - **Readability**: Write clear, self-documenting code
 - **Modularity**: Keep components small and focused
 - **Reusability**: Create shared utilities for common operations
@@ -120,6 +131,7 @@ This is a **Digital Playing Cards Application** with:
 ## 🔧 Development Workflow
 
 ### When Starting a New Feature:
+
 1. Read PLANNING.md to understand the architecture
 2. Check TASKS.md for the specific requirements
 3. Review relevant sections in Playing_Cards_PRD.md
@@ -130,6 +142,7 @@ This is a **Digital Playing Cards Application** with:
 8. Document any new patterns or decisions in PLANNING.md
 
 ### When Fixing Bugs:
+
 1. Understand the expected behavior (check PRD)
 2. Identify the root cause
 3. Consider if the fix requires updating documentation
@@ -138,6 +151,7 @@ This is a **Digital Playing Cards Application** with:
 6. Document any gotchas in PLANNING.md
 
 ### When Refactoring:
+
 1. Explain why refactoring is needed
 2. Check if it affects documented architecture in PLANNING.md
 3. Ensure all tests still pass (or update them)
@@ -149,7 +163,9 @@ This is a **Digital Playing Cards Application** with:
 ## 📝 Documentation Maintenance
 
 ### PLANNING.md Updates:
+
 Update when you:
+
 - Make architectural decisions
 - Establish new patterns or conventions
 - Discover important technical constraints
@@ -157,7 +173,9 @@ Update when you:
 - Create reusable utilities or components
 
 ### TASKS.md Updates:
+
 Update when you:
+
 - Complete any task (mark with [x] and date)
 - Start a task (mark with [→])
 - Discover new tasks
@@ -166,6 +184,7 @@ Update when you:
 - Break down large tasks into subtasks
 
 ### When to Create New Documentation:
+
 - API documentation (if building APIs)
 - Component documentation (for complex components)
 - Deployment guide (when deployment is configured)
@@ -176,24 +195,28 @@ Update when you:
 ## 🎮 Game-Specific Considerations
 
 ### Card System:
+
 - Maintain immutability in card state
 - Use consistent card identification (rank + suit)
 - Handle face-up/face-down state carefully
 - Ensure proper card ownership tracking
 
 ### Drag-and-Drop:
+
 - Support both mouse and touch events
 - Provide clear visual feedback
 - Implement proper drop zone detection
 - Handle edge cases (dragging out of bounds, etc.)
 
 ### Game Rules:
+
 - Keep rule logic separate from UI components
 - Make rules easily testable
 - Document rule edge cases
 - Ensure deterministic behavior
 
 ### Performance:
+
 - Optimize card rendering (consider virtualization)
 - Use requestAnimationFrame for animations
 - Minimize re-renders during drag operations
@@ -204,18 +227,21 @@ Update when you:
 ## 🤝 Communication Guidelines
 
 ### When Presenting Solutions:
+
 - Explain your reasoning
 - Reference relevant PRD requirements
 - Mention any tradeoffs or alternatives considered
 - Be clear about what's implemented vs. what's not
 
 ### When Asking for Clarification:
+
 - Refer to specific PRD requirements
 - Explain what's ambiguous
 - Suggest possible interpretations
 - Wait for confirmation before proceeding
 
 ### When Suggesting Changes:
+
 - Explain the problem being solved
 - Describe the proposed solution
 - Mention impact on existing features
@@ -226,6 +252,7 @@ Update when you:
 ## ⚠️ Important Reminders
 
 ### DO:
+
 - ✅ Read PLANNING.md at the start of EVERY new conversation
 - ✅ Check TASKS.md before starting work
 - ✅ Mark completed tasks immediately with date
@@ -237,6 +264,7 @@ Update when you:
 - ✅ Write clean, maintainable code
 
 ### DON'T:
+
 - ❌ Skip reading PLANNING.md at session start
 - ❌ Forget to update TASKS.md
 - ❌ Make architectural changes without documenting
@@ -250,6 +278,7 @@ Update when you:
 ## 🎯 Success Criteria Checklist
 
 Before considering any task complete, verify:
+
 - 🔴 Requirements from PRD are met
 - 🔴 Code follows project patterns (check PLANNING.md)
 - 🔴 Task is marked complete in TASKS.md (with 🟢 and date)
@@ -274,15 +303,16 @@ Before considering any task complete, verify:
 
 ## 🔄 Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0 | 2025-10-19 | Initial CLAUDE.md created |
+| Version | Date       | Changes                   |
+| ------- | ---------- | ------------------------- |
+| 1.0     | 2025-10-19 | Initial CLAUDE.md created |
 
 ---
 
 ## Final Note
 
 **Remember**: This project is about creating a flexible, intuitive card manipulation interface. Always prioritize:
+
 1. **User experience** - smooth, intuitive interactions
 2. **Flexibility** - support any card game through freeform mode
 3. **Reliability** - correct game rules for built-in games
