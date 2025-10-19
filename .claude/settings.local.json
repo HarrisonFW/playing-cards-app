@@ -18,7 +18,8 @@
       "Bash(tree:*)",
       "Bash(npm run lint)",
       "Bash(npm run format:*)",
-      "Bash(npx prettier:*)"
+      "Bash(npx prettier:*)",
+      "Bash(npm run test:run:*)"
     ],
     "deny": [],
     "ask": []
